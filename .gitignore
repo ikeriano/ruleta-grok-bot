@@ -1,0 +1,5 @@
+node_modules
+capturas/
+tools/frases.json
+tools/__pycache__
+tools/gen_voces.log

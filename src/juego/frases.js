@@ -1,0 +1,71 @@
+// Frases FIJAS del presentador, la copresentadora y los concursantes (todas pregeneradas con Piper TTS).
+export const F = {
+  bienvenida: '¡Muy buenas y bienvenidos a La ruleta de la suerte! Tres concursantes, una ruleta de veinticuatro gajos y un panel lleno de letras. ¡Que empiece el giro!',
+  bienvenidaFortuna: '¡Buenas tardes y bienvenidos a La ruleta de la fortuna! Pesetas, letras y una ruleta que no para de girar.',
+  copreEntra: 'Y como siempre, a mi lado, la reina del panel. ¡Un aplauso para ella!',
+  presentacion: 'Vamos a conocer a los concursantes de hoy.',
+  velocidad: '¡Prueba de velocidad! Las letras se destapan solas. El primero que pulse y acierte el panel se lleva el premio. ¡Atentos!',
+  velocidad2: 'Segunda prueba de velocidad. Esta vale el doble. ¡Dedos en el pulsador!',
+  pulsa: '¡Has pulsado! Resuelve el panel.',
+  nadie: '¡Nadie lo ha sacado! El panel se queda sin dueño.',
+  panel: 'Vamos con el panel. Recordad: girad la ruleta, decid una consonante, y si está, el dinero se multiplica por cada letra. Las vocales se compran a cincuenta euros.',
+  panelCrono: '¡Panel con crono! Cada jugada tiene solo diez segundos. Si se acaba el tiempo, pasa el turno. ¡Rápido!',
+  cronoFin: '¡Se acabó el tiempo de la jugada!',
+  turnoTuyo: 'Te toca. ¿Giras, compras vocal o resuelves?',
+  gira: '¡A girar!', consonante: 'Dime una consonante.', vocal: '¿Qué vocal compras?', noHay: 'No hay ninguna. Lo siento, pierdes el turno.', yaDicha: 'Esa letra ya se ha dicho. Pierdes el turno.',
+  quiebra: '¡Quiebra! Pierdes todo lo acumulado en este panel.', pierde: '¡Pierde turno!', comodin: '¡Comodín! Guárdalo bien: te salva de perder el turno.', usaComodin: 'Usas el comodín y sigues jugando.',
+  x2: '¡Gajo por dos! Si la consonante está, se duplica lo que llevas.', mitad: '¡Un medio! Si la consonante está, tu marcador se queda a la mitad.', melo: '¡Me lo quedo! Si aciertas la consonante, te quedas con el dinero de un rival.',
+  selodoy: '¡Se lo doy! Si la consonante está, tienes que regalar tu dinero a un rival.', correcto: '¡Correcto! ¡Panel resuelto!', incorrecto: '¡No es correcto! Pasa el turno.',
+  sinConsonantes: '¡Ya no quedan consonantes! Solo se pueden comprar vocales o resolver.', sinNada: 'Ya está todo destapado. ¡Resuelve!', vocalNo: 'Necesitas cincuenta euros para comprar una vocal.',
+  clasificacion: 'Así queda el marcador después de todos los paneles.',
+  final: '¡Ruleta final! Primero giramos la ruleta de los sobres para saber qué premio te juegas. Luego eliges cuatro consonantes y una vocal, y tienes diez segundos para resolver.',
+  finalSobre: 'Ya tienes tu sobre. No lo abriremos hasta el final.', finalLetras: 'Elige cuatro consonantes y una vocal.', finalTiempo: '¡Diez segundos! ¡Resuelve!',
+  finalGana: '¡Enhorabuena! ¡Has resuelto el panel de la ruleta final!', finalPierde: '¡Oh! No ha podido ser. Vamos a ver qué había en el sobre…',
+  coche: '¡Te llevas el coche! ¡Arranca, que es tuyo!',
+  despedida: '¡Y hasta aquí la ruleta de hoy! Gracias por girar con nosotros. Mañana más letras, más gajos y más suerte. ¡Hasta mañana!',
+  paseo: '¡Concursante, ve hasta tu marcador! Es el del aro verde, detrás de la ruleta.',
+  entreno: '¡Bienvenido al entrenamiento! Aquí la quiebra no duele. Practica tranquilo.',
+  explora: '¡Bienvenido al plató! Date una vuelta, pero no gires la ruleta sin permiso.',
+  exploraSaludo: '¡Hombre! ¿Vienes a concursar? Ponte en tu atril, que empezamos enseguida.',
+  girarLibre: 'Gira la ruleta todas las veces que quieras. ¡Arrastra con el dedo o pulsa el botón!',
+  hayN: ['¡Hay una!', '¡Hay dos!', '¡Hay tres!', '¡Hay cuatro!', '¡Hay cinco!', '¡Hay seis!', '¡Hay siete!', '¡Hay ocho!'],
+  ganaDia: '¡Tenemos ganador del día! Se va a la ruleta final.', empate: 'Hay empate en el marcador. ¡Desempate con una prueba de velocidad!',
+};
+// Copresentadora (voz daniela)
+export const FC = {
+  hola: '¡Hola a todos! Yo me encargo de las letras. ¡Mucha suerte, concursantes!',
+  destapa: ['¡Vamos allá!', '¡Ahí van!', '¡Mirad cuántas!', '¡Os destapo las letras!'],
+  final: '¡Te deseo toda la suerte del mundo en el panel final!',
+  adios: '¡Hasta mañana! ¡Os esperamos con más letras!',
+};
+export const CONC = {
+  giro: ['¡Giro!', 'Voy a girar.', '¡Que gire!', 'Giro la ruleta.'],
+  vocal: ['Compro una vocal.', 'Quiero una vocal.'],
+  resuelvo: ['¡Resuelvo!', 'Quiero resolver.', '¡Lo tengo!'],
+  bien: ['¡Toma!', '¡Bien!', '¡Lo sabía!', '¡Sí señor!'],
+  mal: ['¡No puede ser!', '¡Vaya!', '¡Qué rabia!', '¡Ay, mi dinero!'],
+  hola: ['¡Hola a todos!', '¡Encantado de estar aquí!', '¡Hola, hola! ¡Qué nervios!'],
+};
+export const NOMBRE_LETRA = { A: 'a', B: 'be', C: 'ce', D: 'de', E: 'e', F: 'efe', G: 'ge', H: 'hache', I: 'i', J: 'jota', K: 'ka', L: 'ele', M: 'eme', N: 'ene', Ñ: 'eñe', O: 'o', P: 'pe', Q: 'cu', R: 'erre', S: 'ese', T: 'te', U: 'u', V: 'uve', W: 'uve doble', X: 'equis', Y: 'i griega', Z: 'zeta' };
+export const CHISTES = [
+  '¿Sabéis por qué la ruleta nunca se marea? Porque lleva toda la vida dando vueltas.',
+  'Un concursante me preguntó si podía comprar una consonante. ¡Le dije que eso ya es de otro concurso!',
+  'Mi médico me dijo que hiciera ejercicio. Así que ahora giro la ruleta con las dos manos.',
+  '¿Qué le dice la Q a la U? ¡Sin ti no soy nadie!',
+  'En casa me piden que resuelva las cosas rápido… y yo les pido una vocal.',
+  'La quiebra es como el lunes: nadie la quiere, pero siempre llega.',
+  '¿Por qué la letra E está tan contenta? Porque siempre sale en el panel.',
+  'Mi abuela juega en casa y siempre acierta el panel antes que nadie. ¡Pero no quiere venir porque dice que aquí hay mucha luz!',
+];
+export const PROFESIONES_JUEGO = [
+  { nombre: 'Paco Gajos', prof: 'Afinador de ruletas de feria', voz: 'carlfm', emoji: '🧔' },
+  { nombre: 'Rosi Vocales', prof: 'Coleccionista de sopas de letras', voz: 'daniela', emoji: '👩' },
+  { nombre: 'Ramón Quiebras', prof: 'Contador de baldosas del pasillo', voz: 'sharvard', emoji: '👨‍🦲' },
+  { nombre: 'Toni Comodín', prof: 'Instructor de siestas en hamaca', voz: 'ald', emoji: '🧑' },
+  { nombre: 'Encarna Paneles', prof: 'Campeona regional de crucigramas', voz: 'daniela', emoji: '👵' },
+  { nombre: 'Julián Consonante', prof: 'Inspector de colas del supermercado', voz: 'ald', emoji: '👴' },
+  { nombre: 'Merche Letras', prof: 'Catadora oficial de churros', voz: 'daniela', emoji: '👱‍♀️' },
+  { nombre: 'Fermín Giros', prof: 'Repartidor de propaganda en ascensores', voz: 'carlfm', emoji: '👨' },
+  { nombre: 'Lolo Pivote', prof: 'Domador de paraguas rebeldes', voz: 'sharvard', emoji: '🧑‍🦱' },
+  { nombre: 'Nati Ruletas', prof: 'Probadora de colchones', voz: 'daniela', emoji: '👩‍🦰' },
+];

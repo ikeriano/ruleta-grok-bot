@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="#06123a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="app-version" content="1.0">
+<title>La ruleta de la suerte 3D · El juego (fan-made)</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="rs.css">
+<style>:root{--m-icono:"🎡"}</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud" class="hidden">
+  <div id="hudConc"></div>
+  <div class="centro"><div id="timer"></div><div id="roundTxt"></div></div>
+</div>
+<div id="panel2d" class="hidden"><canvas width="1400" height="560"></canvas></div>
+<div id="jugada" class="hidden"></div>
+<div id="giro" class="hidden"></div>
+<div id="hashtag"></div>
+<div id="bubble" class="hidden"></div>
+<div id="lower3" class="hidden"></div>
+<div id="credits" class="hidden"><div id="creditsRoll"></div></div>
+<div id="toast" class="hidden"></div>
+<div id="marcador" class="hidden"></div>
+<div id="topbar" class="hidden">
+  <button id="btnMenu" title="Menú">☰</button>
+  <button id="btnCam" title="Cámara">👁</button>
+  <button id="btnLuces" title="Luces">💡</button>
+  <button id="btnSkip" class="hidden">Saltar ⏭</button>
+</div>
+<div id="glights" class="hidden"></div>
+<div id="hint" class="hidden"></div>
+<div id="actions"></div>
+<div id="overlay" class="hidden"></div>
+<div id="joy" class="hidden"><div id="knob"></div></div>
+<img id="cabLogo" alt="">
+<div id="fx-flash"></div><div id="fx-fade"></div>
+<div id="video" class="hidden"><video playsinline></video></div>
+<div id="menu"></div>
+<div id="loading"><div class="ld-bombilla">🎡</div><p>Cargando el plató…</p></div>
+<div id="rotate">Gira el móvil 📱↻</div>
+<script src="data/paneles_extra.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
