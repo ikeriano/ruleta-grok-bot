@@ -197,7 +197,9 @@ function Lt(p) {
   if (p === 'main') {
     col.append(mbtn('Jugar', 'Programa completo, entrenamiento, clásico…', 'gold', () => Lt('play')), mbtn('Opciones', 'Sonido, etapa, calidad gráfica, pantalla completa', '', () => Lt('options')),
       mbtn('La historia de La ruleta', `${esc(cfg.presentador)} te cuenta la historia del programa`, '', () => iniciar('historia')), mbtn('Cómo se juega', 'Las reglas del concurso', '', () => Lt('help')), mbtn('Créditos', '', '', () => Lt('credits')));
-    if (!matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches) col.append(mbtn('Instalar app', 'Juega sin conexión desde tu pantalla de inicio', 'inst', instalar));
+    const enApk = location.hostname === 'appassets.androidplatform.net';
+    if (!enApk && !matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches) col.append(mbtn('Instalar app', 'Juega sin conexión desde tu pantalla de inicio', 'inst', instalar));
+    if (!enApk) col.append(mbtn('Descargar APK', 'Instala el juego en tu móvil Android', 'inst', () => window.open('https://github.com/ikeriano/ruleta-grok-bot/releases/latest', '_blank')));
   } else if (p === 'play') {
     col.append(mbtn('Programa completo', `Cabecera, 2 velocidades, 3 paneles, ruleta final y despedida · ${esc(T.plato ? ETAPAS[T.plato].corto : E.corto)}`, 'gold', () => iniciar('programa')), mbtn('Entrenamiento', 'Practica cada prueba por separado', '', () => Lt('train')),
       mbtn('Clásico', 'La ruleta de la fortuna (1990-97): plató retro y pesetas', '', () => iniciar('clasico')), mbtn('Explorar el plató', 'Pasea libremente por el plató 3D', '', () => iniciar('explorar')),
