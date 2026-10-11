@@ -11,7 +11,7 @@ import { drawLogo } from './plato/logo.js';
 import { THEMES } from './temas.js';
 import { me } from './lib/audio.js';
 import { audioCtx, recursoEpoca, guardarSubido, quitarSubido, idb as idbMedia } from './lib/media.js';
-import { $, esc, nuevoToken, check, Dt, Zi, ABORT, alLimpiar, bubble, di, habla, hud, cerrarOverlay, hashtag, limpiarRotulos, toast, acciones, ocultarCreditos } from './juego/core.js';
+import { $, esc, nuevoToken, check, Dt, Zi, ABORT, alLimpiar, bubble, di, habla, hud, cerrarOverlay, hashtag, limpiarRotulos, toast, acciones, ocultarCreditos, enPesetas } from './juego/core.js';
 import { jugarPrograma, entrenamiento, ETAPAS, creditos, PRUEBAS_ENTRENO, AYUDA } from './juego/programa.js';
 import { ocultarPanel, temaFrase, letraVoz } from './juego/rondas.js';
 import { FC, NOMBRE_LETRA } from './juego/frases.js';
@@ -120,12 +120,13 @@ const camPresentador = () => CAMS.presentador;
 let camFija = null;
 const api = {
   P: () => P, tema: () => temaId,
+  camLibre: () => !camFija,
   cam: (n, arg) => { if (camFija) return; if (n === 'conc') camConc(arg); else camara(n); },
   setEtapa(id) { const E = ETAPAS[id] || ETAPAS.piramides; ctx.logoOpts = { retro: E.escenario === 'fortuna' }; P.setEtapa(E.escenario); aplicarTema(temaId, false); P.refrescarPantalla(); },
   /** Giro de la ruleta: el humano mantiene pulsado «Girar» (fuerza) o arrastra la ruleta; la IA gira sola. Devuelve el gajo */
   girar(c) {
-    const R = P.rueda; R.activar(c.atril, c.color); if (!camFija) camara('ruleta'); $('#panel2d').classList.add('mini'); alLimpiar(() => $('#panel2d').classList.remove('mini'));
-    if (!c.humano || window.__AUTO) return Zi(Dt(500).then(() => R.girar((Math.random() < 0.5 ? -1 : 1) * (5 + Math.random() * 6)))).finally(() => $('#panel2d').classList.remove('mini'));
+    const R = P.rueda; R.activar(c.atril, c.color); if (!camFija) camara('ruleta'); $('#panel2d').classList.add('p2mini'); alLimpiar(() => $('#panel2d').classList.remove('p2mini'));
+    if (!c.humano || window.__AUTO) return Zi(Dt(500).then(() => R.girar((Math.random() < 0.5 ? -1 : 1) * (5 + Math.random() * 6)))).finally(() => $('#panel2d').classList.remove('p2mini'));
     return Zi(new Promise(res => {
       const box = $('#giro'); box.innerHTML = '<div class="gtit">🎡 ¡Gira la ruleta!</div><div class="gbar"><i></i></div><button class="jbtn gold" id="btnGiro">Mantén pulsado y suelta</button><div class="gnota">o arrastra la ruleta con el dedo o el ratón · Espacio también vale</div>'; box.classList.remove('hidden');
       const bar = box.querySelector('.gbar i'), b = box.querySelector('#btnGiro'); let carga = null, t0 = 0, raf = 0, hecho = false, arr = null;
@@ -143,7 +144,7 @@ const api = {
       renderer.domElement.addEventListener('pointerdown', dn); addEventListener('pointermove', mv); addEventListener('pointerup', up); addEventListener('keydown', kd); addEventListener('keyup', ku);
       function limpiar() { box.classList.add('hidden'); box.innerHTML = ''; cancelAnimationFrame(raf); renderer.domElement.removeEventListener('pointerdown', dn); removeEventListener('pointermove', mv); removeEventListener('pointerup', up); removeEventListener('keydown', kd); removeEventListener('keyup', ku); }
       alLimpiar(limpiar);
-    })).finally(() => $('#panel2d').classList.remove('mini'));
+    })).finally(() => $('#panel2d').classList.remove('p2mini'));
   },
   async cabecera() { if (cfg.cabecera === 'video' && await videoCabecera()) return; return cabecera3D(); },
   paseo(i) {
@@ -379,6 +380,7 @@ window.__frases = () => {
   const premios = [...PREMIOS_BASE, ...Object.values(THEMES).flatMap(T => T.premios || []), { t: '500.000 pesetas' }, { t: '1.000.000 de pesetas' }, { t: '250.000 pesetas' }];
   premios.forEach(p => add(`En el sobre había… ${p.t.replace(/[^\p{L}\p{N} .,!¡€]/gu, '').trim()}.`));
   const temas = new Set(); [...DATA.paneles, ...Object.values(DATA.especiales).flat()].forEach(p => { add(p.f, 'davefx', true); temas.add(p.tema); }); temas.forEach(t => add(temaFrase(t)));
+  L.filter(x => x.v === 'davefx' && !x.q && /euro|€/i.test(x.t)).forEach(x => add(enPesetas(x.t)));
   return L;
 };
 

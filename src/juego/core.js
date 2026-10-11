@@ -9,6 +9,10 @@ export const VEL = () => window.__VEL || 1;
 let moneda = '€';
 export const setMoneda = m => { moneda = m; };
 export const miles = n => { const v = Math.round(Number(n) || 0); return (v < 0 ? '-' : '') + String(Math.abs(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+/** En el plató de 1990-97 (pesetas) el presentador no dice «euros» */
+const PTS = [[/cien mil euros/gi, 'diez millones de pesetas'], [/doscientos euros/gi, 'veinte mil pesetas'], [/cincuenta euros/gi, 'cinco mil pesetas'], [/(\d)\s*€/g, '$1 pesetas'], [/\beuros\b/gi, 'pesetas'], [/\beuro\b/gi, 'peseta']];
+export const enPesetas = t => PTS.reduce((a, [r, x]) => a.replace(r, x), String(t));
+export const textoMoneda = t => (moneda === 'pts' ? enPesetas(t) : t);
 export const euros = n => miles(n) + (moneda === 'pts' ? ' ptas.' : ' €');
 export const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9ñ ]/g, '').replace(/\s+/g, ' ').trim();
 export const baraja = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -70,6 +74,7 @@ export function di(texto, ms = 3500, quien = null, nombre = null) { const b = $(
 const espera = t => Dt(Math.max(1400, String(t).length * 55));
 /** El presentador dice una frase (bocadillo + voz Piper davefx) y espera a que termine */
 export async function habla(texto, ms = 3800) {
+  texto = textoMoneda(texto);
   di(texto, ms + 1500);
   if (!cfg.voz) return espera(texto);
   await Zi(me.say(texto, 'davefx'));

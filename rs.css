@@ -28,7 +28,7 @@ body.en-cabecera #topbar{display:flex!important}
 /* ---------- La ruleta ---------- */
 .hc{border-width:3px}.hc .d{color:#fff}
 #panel2d{position:fixed;left:50%;top:clamp(88px,14vh,124px);transform:translateX(-50%);z-index:11;width:min(58vw,150vh,900px);pointer-events:none;filter:drop-shadow(0 6px 18px #000a);transition:all .45s ease}
-#panel2d.mini{left:1.2vw;transform:none;width:min(34vw,90vh,520px);top:clamp(84px,13vh,118px)}
+#panel2d.p2mini{left:1.2vw;transform:none;width:min(34vw,90vh,520px);top:clamp(84px,13vh,118px)}
 #panel2d canvas{width:100%;height:auto;display:block}
 #jugada{position:fixed;left:50%;bottom:2.5vh;transform:translateX(-50%);z-index:20;display:flex;flex-direction:column;align-items:center;gap:1vh;max-width:96vw}
 #jugada.botonera{flex-direction:row;flex-wrap:wrap;justify-content:center}

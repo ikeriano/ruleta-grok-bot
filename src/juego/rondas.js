@@ -90,7 +90,7 @@ async function panelResuelto(G, E, c) {
 // ---------- PRUEBA DE VELOCIDAD ----------
 export async function velocidad(G, premio, { titulo = 'PRUEBA DE VELOCIDAD', explicar = F.velocidad } = {}) {
   const p = elegirPanel(G); const E = nuevoPanel(p); E.vis = new Set(); refrescar(G, -1);
-  await banner(titulo, `Premio: ${euros(premio)}`); mostrarPanel(G, E); G.cam('panel');
+  await banner(titulo, `Premio: ${euros(premio)}`); mostrarPanel(G, E, !G.api.camLibre?.()); pintar(G, E); G.cam('panel'); // solo el panel 3D: el 2D encima lo duplicaba
   await habla(explicar); await habla(temaFrase(p.tema));
   const orden = baraja(celdasLetra(E)); const bloq = new Set(); let ganador = null;
   const H = G.conc.find(c => humanoJuega(G, c));
@@ -102,12 +102,12 @@ export async function velocidad(G, premio, { titulo = 'PRUEBA DE VELOCIDAD', exp
     while (orden.length && !ganador) {
       for (let k = 0; k < 6 && !pulsado; k++) { await Dt(130); for (const c of G.conc) if (!humanoJuega(G, c) && !bloq.has(c) && !pulsado && Math.random() < Math.max(0, fraccion(E) - 0.42) * 0.22 * (0.5 + c.habil)) pulsar(c); }
       if (pulsado) {
-        const c = pulsado; me.stopMusic(); me.play('pulsador'); cerrarJugada(); G.activo = G.conc.indexOf(c); refrescar(G); G.cam('conc', G.activo);
+        const c = pulsado; me.stopMusic(); me.play('pulsador'); cerrarJugada(); G.activo = G.conc.indexOf(c); refrescar(G); G.cam('conc', G.activo); await Dt(1100); G.cam('panel'); // se resuelve mirando el panel 3D (sin duplicarlo en 2D)
         if (humanoJuega(G, c)) await habla(F.pulsa);
         const ok = await resolver(G, E, c, 15);
         if (ok) { console.info('[ruleta] velocidad →', c.nombre, '+' + premio); ganador = c; c.dinero += premio; await panelResuelto(G, E, c); refrescar(G); break; }
         me.play('fallo'); await habla(F.incorrecto); bloq.add(c); pulsado = null; G.activo = -1; refrescar(G);
-        if (bloq.size >= G.conc.length) break; G.cam('panel'); me.music('velocidad'); btn(); continue;
+        if (bloq.size >= G.conc.length) break; mostrarPanel(G, E, !G.api.camLibre?.()); G.cam('panel'); me.music('velocidad'); btn(); continue;
       }
       const k = orden.shift(); E.vis.add(k); pintar(G, E); me.play('ding');
     }
@@ -129,7 +129,7 @@ async function decidir(G, E, c, crono) {
   }
   await Dt(700);
   if (!consQ && !puedeVocal) return 'resolver';
-  if (iaSabe(E, c) && fraccion(E) > 0.45) return 'resolver';
+  if ((c.ronda || 0) > 0 && iaSabe(E, c) && fraccion(E) > 0.45) return 'resolver'; // sin dinero en la ronda no se planta a resolver
   if (puedeVocal && (Math.random() < 0.3 || !consQ)) return 'vocal';
   return consQ ? 'girar' : 'resolver';
 }
